@@ -2,7 +2,7 @@
 /**
 *
 * @package No Duplicate phpBB SEO
-* @version $Id: listener.php 426 2014-07-09 14:09:12Z  $
+* @version $$
 * @copyright (c) 2014 www.phpbb-seo.com
 * @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
 *

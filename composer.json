@@ -17,9 +17,9 @@
 		"php": ">=5.3.3"
 	},
 	"extra": {
-		"display-name": "phpBB SEO - No Duplicate",
+		"display-name": "No Duplicate phpBB SEO",
 		"soft-require": {
-			"phpbb/phpbb": "3.1.*@dev"
+			"phpbb/phpbb": ">=3.1.0-RC2"
 		}
 	}
 }
