@@ -15,5 +15,6 @@ services:
             - @user
             - %core.root_path%
             - %core.php_ext%
+            - @?phpbbseo.usu.core
         tags:
             - { name: event.listener }

@@ -27,17 +27,7 @@ class release_2_0_0_b1 extends \phpbb\db\migration\migration
 
 	static public function depends_on()
 	{
-		global $config; // god save the hax
-
-		if (!empty($config['seo_usu_on']))
-		{
-			// this hax is required because it's not enough if files
-			// are present on the server, the usu ext must be actually installed
-			return array('\phpbbseo\usu\migrations\release_2_0_0_b1');
-		}
-
-		// probably the wierdest message transport ever :O
-		return array('You must install/activate the USU first from phpBB SEO');
+		return array('\phpbb\db\migration\data\v310\rc1');
 	}
 
 	public function update_schema()
