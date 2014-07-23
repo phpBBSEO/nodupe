@@ -10,7 +10,7 @@ services:
     phpbbseo.nodupe.listener:
         class: phpbbseo\nodupe\event\listener
         arguments:
-            - @phpbbseo.usu.core
+            - @?phpbbseo.usu.core
             - @config
             - @auth
             - @user
