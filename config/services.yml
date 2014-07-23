@@ -10,11 +10,11 @@ services:
     phpbbseo.nodupe.listener:
         class: phpbbseo\nodupe\event\listener
         arguments:
-            - @?phpbbseo.usu.core
             - @config
             - @auth
             - @user
             - %core.root_path%
             - %core.php_ext%
+            - @?phpbbseo.usu.core
         tags:
             - { name: event.listener }

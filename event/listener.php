@@ -59,14 +59,14 @@ class listener implements EventSubscriberInterface
 	/**
 	* Constructor
 	*
-	* @param \phpbbseo\usu\core		$usu_core			usu core object
 	* @param \phpbb\config\config		$config				Config object
 	* @param \phpbb\auth\auth		$auth				Auth object
 	* @param \phpbb\user			$user				User object
 	* @param string				$phpbb_root_path		Path to the phpBB root
 	* @param string				$php_ext			PHP file extension
+	* @param \phpbbseo\usu\core		$usu_core			usu core object
 	*/
-	public function __construct(\phpbbseo\usu\core $usu_core = null, \phpbb\config\config $config, \phpbb\auth\auth $auth, \phpbb\user $user, $phpbb_root_path, $php_ext)
+	public function __construct(\phpbb\config\config $config, \phpbb\auth\auth $auth, \phpbb\user $user, $phpbb_root_path, $php_ext, \phpbbseo\usu\core $usu_core = null)
 	{
 		global $phpbb_container; // god save the hax
 
