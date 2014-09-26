@@ -88,10 +88,11 @@ class listener implements EventSubscriberInterface
 	static public function getSubscribedEvents()
 	{
 		return array(
-			'core.display_forums_modify_sql'			=> 'core_display_forums_modify_sql',
-			'core.display_forums_modify_row'			=> 'core_display_forums_modify_row',
+			'core.display_forums_modify_sql'		=> 'core_display_forums_modify_sql',
+			'core.display_forums_modify_row'		=> 'core_display_forums_modify_row',
 			'core.display_forums_modify_forum_rows'		=> 'core_display_forums_modify_forum_rows',
 			'core.display_forums_modify_template_vars'	=> 'core_display_forums_modify_template_vars',
+			'core.viewforum_modify_topicrow'		=> 'core_viewforum_modify_topicrow',
 		);
 	}
 
@@ -180,5 +181,30 @@ class listener implements EventSubscriberInterface
 				$event['forum_row'] = $forum_row;
 			}
 		}
+	}
+
+	public function core_viewforum_modify_topicrow($event)
+	{
+		// Unfortunately, we do not have direct access to $topic_forum_id here
+		global $topic_forum_id; // god save the hax
+
+		$row = $event['row'];
+		$topic_row = $event['topic_row'];
+		$replies = $topic_row['REPLIES'];
+		$topic_id = $topic_row['TOPIC_ID'];
+
+		if (($replies + 1) > $this->posts_per_page)
+		{
+			$this->topic_last_page[$topic_id] = floor($replies / $this->posts_per_page) * $this->posts_per_page;
+		}
+
+		if (!empty($this->usu_core))
+		{
+			$this->usu_core->prepare_topic_url($row, $topic_forum_id);
+		}
+
+		$topic_row['U_LAST_POST'] = append_sid("{$this->phpbb_root_path}viewtopic.$this->php_ext", 'f=' . $topic_forum_id . '&amp;t=' . $topic_id . '&amp;start=' . @intval($this->topic_last_page[$topic_id])) . '#p' . $row['topic_last_post_id'];
+
+		$event['topic_row'] = $topic_row;
 	}
 }
